@@ -1,0 +1,21 @@
+<div class="col-md-6 user-container">
+    <h2 class="text-center">Edit User</h2>
+    <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+      <div style="visibility: hidden;">
+        <input type="text" formControlName="id" placeholder="id" name="id" class="form-control" id="id">
+      </div>
+      <div class="form-group">
+        <label for="name">Name: </label>
+        <input type="text" formControlName="name" placeholder="name" name="name" class="form-control" id="name">
+      </div><br>
+      <div class="form-group">
+        <label for="price">Price: </label>
+        <input type="number" formControlName="price" placeholder="price" name="price" class="form-control" id="price">
+      </div><br>
+      <div class="form-group">
+        <label for="number_participants">number of participants: </label>
+        <input type="number" formControlName="number_participants" placeholder="number_participants" name="number_participants" class="form-control" id="number_participants">
+      </div><br>
+      <button [disabled]="!change" class="btn btn-success">Update</button>
+    </form>
+  </div>
