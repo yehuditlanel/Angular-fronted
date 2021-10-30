@@ -25,4 +25,7 @@ export class ServerService {
   getGameById(id:number){
     return this.http.get(this.path +'/'+ id);
   }
+  getSearchGame(name:string):Observable<any[]>{
+    return this.http.get<any[]>(this.path+'/search/'+name);
+  }
 }

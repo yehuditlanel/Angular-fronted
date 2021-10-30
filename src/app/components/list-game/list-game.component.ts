@@ -10,34 +10,50 @@ import { ServerService } from 'src/app/service/server.service';
 export class ListGameComponent implements OnInit {
 
   constructor(private server:ServerService,private router:Router) { }
-// games:Array<game>=[
-//   {id:1, name: "book1", price: 5,number_participants:16},
-//   { id:2,name: "book2", price: 8 ,number_participants:16},
-//   { id:3,name: "book3", price: 9 ,number_participants:89},
-//   { id:4,name: "book4", price: 10, number_participants:15}
-// ];
 games:game[];
+names:game[];
+game:any;
+key:string;
   ngOnInit() {
     this.server.byGet()
       .subscribe( data => {
         this.games = data;
       });
   }
-  deleteUser(game: game): void {
+  deleteGame(game: game): void {
     this.server.deleteGame(game.id)
       .subscribe( data => {
         this.games = this.games.filter(u => u !== game);
       })
   };
 
-  editUser(game: game): void {
+  editGame(game: game): void {
     window.localStorage.removeItem("editGameId");
     window.localStorage.setItem("editGameId", game.id.toString());
     this.router.navigate(['edit-game']);
   };
 
-  addUser(): void {
+  addGame(): void {
     this.router.navigate(['add-game']);
   };
-
+  getgameSearch(name:any){
+    const self=this;
+    this.key=name.target.value;
+    if(this.key==''){
+      this.key=null;
+    }
+    this.server.getSearchGame(this.key)
+      .subscribe( data => {
+        this.games=data;
+        if(this.key!=null){
+          this.names=data;
+        }
+        else{
+          this.names=[];
+        }
+      });
+  }
+  getValueSearch(){
+    return this.key;
+  }
 }

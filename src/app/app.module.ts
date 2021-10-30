@@ -9,6 +9,7 @@ import { UpdateGameComponent } from './components/update-game/update-game/update
 import { ListGameComponent } from './components/list-game/list-game.component';
 import { ServerService } from 'src/app/service/server.service';
 import { HttpClientModule } from '@angular/common/http';
+import { HighlightPipe } from './pipes/highlight.pipe';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { HttpClientModule } from '@angular/common/http';
     AddGameComponent,
     UpdateGameComponent,
     ListGameComponent,
+    HighlightPipe,
   ],
   imports: [
     BrowserModule,

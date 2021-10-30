@@ -1,6 +1,14 @@
 <div class="col-md-6 user-container">
     <h1>List of Games</h1>
-    <button class="btn btn-danger" style="width:100px" (click)="addUser()"> Add User</button>
+    <button class="btn btn-danger" style="width:100px" (click)="addGame()">Add Game</button>
+    <br><br>
+    <input type="text" (input)="getgameSearch($event)" class="form-control form-control-lg" placeholder="search name of game.....">
+    <div *ngFor="let name of names">
+      <div class="card card-body mb-1">
+        <div [innerHTML]="name.name|highlight : getValueSearch()">{{name.name}}</div>
+      </div>
+    </div>
+    <br>
     <table class="table table-striped">
       <thead>
       <tr>
@@ -16,8 +24,8 @@
         <td>{{game.name}}</td>
         <td>{{game.price}}</td>
         <td>{{game.number_participants}}</td>
-        <td><button class="btn btn-success" (click)="deleteUser(game)"> Delete</button>
-        <button class="btn btn-success" (click)="editUser(game)" style="margin-left: 20px;"> Edit</button></td>
+        <td><button class="btn btn-success" (click)="deleteGame(game)"> Delete</button>
+        <button class="btn btn-success" (click)="editGame(game)" style="margin-left: 20px;"> Edit</button></td>
       </tr>
       </tbody>
     </table>
